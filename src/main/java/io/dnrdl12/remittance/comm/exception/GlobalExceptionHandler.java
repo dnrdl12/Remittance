@@ -49,8 +49,12 @@ public class GlobalExceptionHandler {
                                                                             HttpServletRequest req) {
         printException(ex);
         var errors = ex.getBindingResult().getFieldErrors().stream()
-                .map(fe -> String.format("[ %s ] 필드를 확인해주세요. 입력된 값: [ %s ]",
-                        fe.getField(), fe.getRejectedValue()))
+                .map(fe -> String.format(
+                        "[%s] 필드를 확인해주세요. 입력된 값: [%s]. 원인: %s",
+                        fe.getField(),
+                        fe.getRejectedValue(),
+                        fe.getDefaultMessage() // ← validation 메시지
+                ))
                 .collect(Collectors.toList());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(BaseResponse.fail(ResultCode.BAD_REQUEST, String.join("; ", errors))

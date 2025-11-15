@@ -75,7 +75,6 @@
 			<scope>test</scope>
 		</dependency>
 
-
 		<!--str swagger -->
 		<dependency>
 			<groupId>org.springdoc</groupId>

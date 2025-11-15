@@ -17,9 +17,9 @@ import io.dnrdl12.remittance.dto.MemberDto;
 
 public interface MemberService {
 
-    MemberDto.IdResponse create(MemberDto.CreateReq req, String actorId);
-    MemberDto.IdResponse update(MemberDto.UpdateReq req, String actorId);
-    MemberDto.IdResponse deleteSoft(Long memberSeq, String actorId);
+    MemberDto.IdResponse create(MemberDto.CreateReq req, String userId);
+    MemberDto.IdResponse update(MemberDto.UpdateReq req, String userId);
+    MemberDto.IdResponse deleteSoft(Long memberSeq, String userId);
     MemberDto.Res getById(Long memberSeq, boolean masked);
     PageDto.PageResponse<MemberDto.Res> search(MemberDto.SearchReq req, boolean masked);
 }

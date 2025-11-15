@@ -4,8 +4,12 @@ import io.dnrdl12.remittance.comm.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Comment;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * packageName    : io.dnrdl12.remittance.entity
@@ -17,6 +21,7 @@ import java.time.LocalDateTime;
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
  * 2025-11-11        JW.CHOI            최초 생성
+ * 2025-11-15        JW.CHOI            컬럼 코멘트 추가, 조인관련 수정
  */
 @Entity
 @Table(name = "fee_policy")
@@ -30,30 +35,40 @@ public class FeePolicy extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "수수료 정책 ID")
+    @Comment("수수료 정책 ID")
     @Column(name = "fee_policy_seq")
     private Long feePolicySeq;
 
     @Schema(description = "정책명")
+    @Comment("정책명")
     @Column(name = "policy_name", nullable = false, length = 50)
     private String policyName;
 
     @Schema(description = "이체 수수료율 (기본 0.001)")
-    @Column(name = "transfer_fee_rate", nullable = false, precision = 5, scale = 2)
+    @Comment("이체 수수료율 (기본 0.001)")
+    @Column(name = "transfer_fee_rate", nullable = false, precision = 10, scale = 5)
     private BigDecimal transferFeeRate = new BigDecimal("0.001");
 
     @Schema(description = "출금 수수료율 (기본 0.000)")
-    @Column(name = "withdraw_fee_rate", nullable = false, precision = 5, scale = 2)
+    @Comment("출금 수수료율 (기본 0.000)")
+    @Column(name = "withdraw_fee_rate", nullable = false, precision = 10, scale = 5)
     private BigDecimal withdrawFeeRate = new BigDecimal("0.000");
 
     @Schema(description = "이벤트 적용 여부")
+    @Comment("이벤트 적용 여부 (TRUE: 이벤트 적용)")
     @Column(name = "event_flag")
     private Boolean eventFlag = Boolean.FALSE;
 
     @Schema(description = "이벤트 시작일")
+    @Comment("이벤트 시작일")
     @Column(name = "start_date")
     private LocalDateTime startDate;
 
     @Schema(description = "이벤트 종료일")
+    @Comment("이벤트 종료일")
     @Column(name = "end_date")
     private LocalDateTime endDate;
+
+    @OneToMany(mappedBy = "feePolicy", fetch = FetchType.LAZY)
+    private List<Account> accounts = new ArrayList<>();
 }

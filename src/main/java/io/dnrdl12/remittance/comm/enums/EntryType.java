@@ -12,6 +12,31 @@ package io.dnrdl12.remittance.comm.enums;
  * 2025-11-12        JW.CHOI            최초 생성
  */
 public enum EntryType {
-    DEBIT,   // 차변 (출금 / 자산 감소)
-    CREDIT   // 대변 (입금 / 자산 증가)
+    DEBIT("DEBIT", "차변 (출금 / 자산 감소)"),
+    CREDIT("CREDIT", "대변 (입금 / 자산 증가)");
+
+    private final String code;
+    private final String description;
+
+    EntryType(String code, String description) {
+        this.code = code;
+        this.description = description;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public static EntryType fromCode(String code) {
+        for (EntryType type : EntryType.values()) {
+            if (type.code.equalsIgnoreCase(code)) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("Invalid EntryType code: " + code);
+    }
 }

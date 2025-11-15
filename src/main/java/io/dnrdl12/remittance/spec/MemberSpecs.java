@@ -1,4 +1,4 @@
-package io.dnrdl12.remittance.repository;
+package io.dnrdl12.remittance.spec;
 import io.dnrdl12.remittance.entity.Member;
 import org.springframework.data.jpa.domain.Specification;
 

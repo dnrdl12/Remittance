@@ -7,6 +7,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Comment;
 
 import java.time.LocalDateTime;
 
@@ -20,6 +21,7 @@ import java.time.LocalDateTime;
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
  * 2025-11-11        JW.CHOI              최초 생성
+ * 2025-11-15        JW.CHOI              컴럼 코멘트추가
  */
 @MappedSuperclass
 @NoArgsConstructor
@@ -28,21 +30,34 @@ import java.time.LocalDateTime;
 @Setter
 public abstract class BaseEntity {
 
+
     @Schema(description = "생성자 ID")
+    @Comment("생성자 ID")
     @Column(name = "reg_id", length = 50)
     private String regId;
 
     @Schema(description = "생성일시 (DB default CURRENT_TIMESTAMP)")
-    @Column(name = "reg_date", insertable = false, updatable = false,
-            columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
+    @Comment("생성일시 (DB default CURRENT_TIMESTAMP)")
+    @Column(
+            name = "reg_date",
+            insertable = false,
+            updatable = false,
+            columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP"
+    )
     private LocalDateTime regDate;
 
     @Schema(description = "수정자 ID")
+    @Comment("수정자 ID")
     @Column(name = "mod_id", length = 50)
     private String modId;
 
     @Schema(description = "수정일시 (DB default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)")
-    @Column(name = "mod_date", insertable = false, updatable = false,
-            columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Comment("수정일시 (DB default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)")
+    @Column(
+            name = "mod_date",
+            insertable = false,
+            updatable = false,
+            columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    )
     private LocalDateTime modDate;
 }

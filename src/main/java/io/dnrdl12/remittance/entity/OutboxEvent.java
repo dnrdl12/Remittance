@@ -4,6 +4,8 @@ import io.dnrdl12.remittance.comm.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Comment;
+
 import java.time.LocalDateTime;
 
 /**
@@ -16,11 +18,14 @@ import java.time.LocalDateTime;
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
  * 2025-11-12        JW.CHOI            최초 생성
+ * 2025-11-15        JW.CHOI            컬럼 코멘트 추가
  */
 @Entity
 @Table(
-    name = "outbox_events",
-    indexes = { @Index(name = "ix_outbox_pub_create", columnList = "published_date,created_date") }
+        name = "outbox_events",
+        indexes = {
+                @Index(name = "ix_outbox_pub_create", columnList = "published_date,created_date")
+        }
 )
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,26 +37,32 @@ public class OutboxEvent extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "아웃박스 이벤트 ID")
+    @Comment("아웃박스 이벤트 고유 ID")
     @Column(name = "outbox_seq")
     private Long outboxSeq;
 
     @Schema(description = "Aggregate 타입 (예: 'transfer')")
+    @Comment("Aggregate 타입 (예: 'transfer')")
     @Column(name = "aggregate_type", nullable = false, length = 50)
     private String aggregateType;
 
     @Schema(description = "Aggregate ID (예: transfers.transfer_seq)")
+    @Comment("Aggregate ID (예: transfers.transfer_seq)")
     @Column(name = "aggregate_id", nullable = false)
     private Long aggregateId;
 
     @Schema(description = "이벤트 타입 (예: TRANSFER_POSTED)")
+    @Comment("이벤트 타입 (예: TRANSFER_POSTED)")
     @Column(name = "event_type", nullable = false, length = 50)
     private String eventType;
 
     @Schema(description = "이벤트 본문(JSON)")
+    @Comment("이벤트 본문(JSON 문자열)")
     @Column(name = "payload", nullable = false, columnDefinition = "JSON")
     private String payload;
 
     @Schema(description = "생성일시 (DB default CURRENT_TIMESTAMP)")
+    @Comment("이벤트 생성 시각 (DB default CURRENT_TIMESTAMP)")
     @Column(
             name = "created_date",
             insertable = false,
@@ -61,6 +72,7 @@ public class OutboxEvent extends BaseEntity {
     private LocalDateTime createdDate;
 
     @Schema(description = "발행 완료 일시")
+    @Comment("이벤트 발행 완료 시각 (발행 성공 시 UPDATE)")
     @Column(name = "published_date")
     private LocalDateTime publishedDate;
 }

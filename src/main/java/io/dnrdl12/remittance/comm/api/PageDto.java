@@ -32,7 +32,7 @@ public class PageDto {
         @Min(1)
         private Integer size = 20;
 
-        @Schema(description = "정렬: 속성,ASC|DESC", example = "memberSeq,DESC")
+        @Schema(description = "정렬: 속성,ASC|DESC", example = "member_seq,DESC")
         private List<String> sort;
     }
 

@@ -30,9 +30,9 @@ public class MemberController {
     @PostMapping
     public ResponseEntity<BaseResponse<MemberDto.IdResponse>> create(
             @Valid @RequestBody MemberDto.CreateReq req,
-            @Parameter(description = "등록자 ID", example = "admin") @RequestHeader("X-USER-ID") String actorId
+            @Parameter(description = "등록자 ID", example = "admin") @RequestHeader("X-USER-ID") String userId
     ) {
-        var idRes = memberService.create(req, actorId);
+        var idRes = memberService.create(req, userId);
         return ResponseEntity.ok(BaseResponse.ok(idRes));
     }
 
@@ -41,9 +41,9 @@ public class MemberController {
     @PutMapping
     public ResponseEntity<BaseResponse<MemberDto.IdResponse>> update(
             @Valid @RequestBody MemberDto.UpdateReq req,
-            @Parameter(description = "수정자 ID", example = "admin") @RequestHeader("X-USER-ID") String actorId
+            @Parameter(description = "수정자 ID", example = "admin") @RequestHeader("X-USER-ID") String userId
     ) {
-        var idRes = memberService.update(req, actorId);
+        var idRes = memberService.update(req, userId);
         return ResponseEntity.ok(BaseResponse.ok(idRes));
     }
 
@@ -52,9 +52,9 @@ public class MemberController {
     @DeleteMapping("/{memberSeq}")
     public ResponseEntity<BaseResponse<MemberDto.IdResponse>> delete(
             @Parameter(description = "회원 식별번호", example = "10001") @PathVariable Long memberSeq,
-            @Parameter(description = "삭제자 ID", example = "admin") @RequestHeader("X-USER-ID") String actorId
+            @Parameter(description = "삭제자 ID", example = "admin") @RequestHeader("X-USER-ID") String userId
     ) {
-        var idRes = memberService.deleteSoft(memberSeq, actorId);
+        var idRes = memberService.deleteSoft(memberSeq, userId);
         return ResponseEntity.ok(BaseResponse.ok(idRes));
     }
 

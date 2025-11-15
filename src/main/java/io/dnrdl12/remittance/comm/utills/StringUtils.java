@@ -13,6 +13,7 @@ import java.util.Map;
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
  * 2022-09-16        UNBIZ              최초 생성
+ * 2025-11-14        JW.CHOI            전화번호하폰삭제추가
  */
 public class StringUtils
 {
@@ -459,6 +460,14 @@ public class StringUtils
             result = val.substring(0,4) + "-" + val.substring(4,6) + "-" + val.substring(6);
         }
         return result;
+    }
+
+    /**
+     * 전화번호 표준화(선택): 숫자만 남기기
+     * */
+    public static String normalizePhone(String phone) {
+        if (phone == null) return null;
+        return phone.replaceAll("[^0-9]", "");
     }
 
 }
