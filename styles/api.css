@@ -1,0 +1,22 @@
+
+---
+
+## `docs/styles/api.css`
+
+```css
+/* ReDoc 영역 기본 정렬 */
+#redoc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 0;
+}
+
+/* 표 가독성 향상 */
+md-table, table {
+  font-size: 0.95rem;
+}
+
+/* 코드 블록 여백 조정 */
+code, pre {
+  font-size: 0.9rem;
+}
