@@ -1,17 +1,15 @@
 # 🎉 Remittance Service (송금 서비스)
 > 계좌 기반 송금 시스템 — Spring Boot · JPA · Docker Compose
 
-<p align="center">
-  <img src="docs/erd-remittance.png.png" width="600" alt="ERD Preview"/>
-</p>
-
-<p align="center">
+<p align="left">
   <a href="https://www.java.com/"><img src="https://img.shields.io/badge/Java-17-red?logo=java" /></a>
   <a href="https://spring.io/"><img src="https://img.shields.io/badge/Spring%20Boot-3.3.x-brightgreen?logo=springboot" /></a>
   <a href="https://hibernate.org/orm/"><img src="https://img.shields.io/badge/JPA-Hibernate-blueviolet" /></a>
   <a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql" /></a>
   <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-Compose-informational?logo=docker" /></a>
 </p>
+
+
 
 ---
 
