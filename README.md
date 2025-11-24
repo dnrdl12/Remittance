@@ -210,7 +210,7 @@ docker-compose down
 
 ### ✔ MkDocs 활용한 정적 API 문서 (docs 폴더 )  
 
-- <a margin="30px" href="https://dnrdl12.github.io/Choijungwook_backend/" target="_blank">문서 확인 하기   </a>
+- <a margin="30px" href="https://dnrdl12.github.io/Remittance/" target="_blank">문서 확인 하기   </a>
 - `docs/index.md` : Remittance API 개요
 - `docs/api/index.html` : 정적 API 안내 페이지
 - `docs/openapi.json` : OpenAPI 3.0 스펙 파일
